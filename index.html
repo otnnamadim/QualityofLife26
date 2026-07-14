@@ -22,14 +22,14 @@
 <style>
   :root {
     --ink: #1c2530;
-    --ink-soft: #ccc2f6;
+    --ink-soft: #d9d9d9;
     --ink-faint: #8a929b;
     --paper: #090d1a;
     --card: #ffffff;
     --line: #e3e6e9;
     --blue: #01032d;
-    --coral: #d9d9d9;
-    --gray-dot: #9aa1a9;
+    --dark blue: #090d1a;
+    --chart-dot: #ccc2f6;
   }
   * { box-sizing: border-box; }
   body {
@@ -69,10 +69,10 @@
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .sw { width: 10px; height: 10px; display: inline-block; }
   .sw.named { background: var(--blue); border-radius: 2px; }
-  .sw.other { background: var(--gray-dot); border-radius: 50%; }
+  .sw.other { background: var(--chart-dot); border-radius: 50%; }
   .sw.sq-blue { background: var(--blue); border-radius: 2px; }
   .sw.sq-gray { background: #c6cbd1; border-radius: 2px; }
-  .sw.sq-coral { background: var(--coral); border-radius: 2px; }
+  .sw.sq-dark blue { background: var(--dark blue); border-radius: 2px; }
   .grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
   .panel {
@@ -159,7 +159,7 @@
 
   <div class="legend">
     <span><span class="sw sq-blue"></span>Positive pairing (categories move together)</span>
-    <span><span class="sw sq-coral"></span>Negative pairing (trade-off)</span>
+    <span><span class="sw sq-dark blue"></span>Negative pairing (trade-off)</span>
   </div>
 
   <div class="panel">
@@ -213,7 +213,7 @@ const labelsCodb = {
 };
 
 const INK = '#1c2530', INK_SOFT = '#5b6570', INK_FAINT = '#8a929b', GRID = '#eceef0';
-const BLUE = '#2a78d6', CORAL = '#d85a30', GRAY_BAR = '#c6cbd1';
+const BLUE = '#2a78d6', dark blue = '#d85a30', GRAY_BAR = '#c6cbd1';
 
 function buildScatter(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
   const namedPts = [], otherPts = [], namedMeta = [];
@@ -348,7 +348,7 @@ new Chart(document.getElementById('chartPairs'), {
     datasets: [{
       data: pairs.map(d => d.rho),
       meta: pairs,
-      backgroundColor: pairs.map(d => d.neg ? CORAL : BLUE),
+      backgroundColor: pairs.map(d => d.neg ? dark blue : BLUE),
       borderRadius: 3, barThickness: 22
     }]
   },

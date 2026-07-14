@@ -25,10 +25,10 @@
     --ink-soft: #d9d9d9;
     --ink-faint: #8a929b;
     --paper: #090d1a;
-    --card: #ffffff;
+    --card: #e9ebee;
     --line: #d9d9d9;
     --blue: #01032d;
-    --dark blue: #090d1a;
+    --accent-neg: #d85a30;
     --chart-dot: #ccc2f6;
   }
   * { box-sizing: border-box; }
@@ -72,7 +72,7 @@
   .sw.other { background: var(--chart-dot); border-radius: 50%; }
   .sw.sq-blue { background: var(--blue); border-radius: 2px; }
   .sw.sq-gray { background: #c6cbd1; border-radius: 2px; }
-  .sw.sq-dark blue { background: var(--dark blue); border-radius: 2px; }
+  .sw.sq-neg { background: var(--accent-neg); border-radius: 2px; }
   .grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
   .panel {
@@ -81,13 +81,13 @@
   }
   .panel h2 {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px; font-weight: 600; margin: 0 0 2px; color: var(--ink);
+    font-size: 14px; font-weight: 600; margin: 0 0 2px; color: #1c2530;
   }
   .rho {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 12.5px; color: var(--ink-soft); margin: 0 0 12px;
+    font-size: 12.5px; color: #5b6570; margin: 0 0 12px;
   }
-  .rho b { color: var(--ink); font-weight: 600; }
+  .rho b { color: #1c2530; font-weight: 600; }
   .chartbox { position: relative; width: 100%; height: 400px; }
   .chartbox.tall { height: 480px; }
   .note {
@@ -159,7 +159,7 @@
 
   <div class="legend">
     <span><span class="sw sq-blue"></span>Positive pairing (categories move together)</span>
-    <span><span class="sw sq-dark blue"></span>Negative pairing (trade-off)</span>
+    <span><span class="sw sq-neg"></span>Negative pairing (trade-off)</span>
   </div>
 
   <div class="panel">
@@ -212,8 +212,8 @@ const labelsCodb = {
   "Oklahoma": [8,0], "New Jersey": [8,5]
 };
 
-const INK = '#1c2530', INK_SOFT = '#5b6570', INK_FAINT = '#8a929b', GRID = '#eceef0';
-const BLUE = '#2a78d6', dark blue = '#d85a30', GRAY_BAR = '#c6cbd1';
+const INK = '#1c2530', INK_SOFT = '#5b6570', INK_FAINT = '#8a929b', GRID = '#d8dce0';
+const BLUE = '#2a78d6', NEG = '#d85a30', GRAY_BAR = '#c6cbd1';
 
 function buildScatter(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
   const namedPts = [], otherPts = [], namedMeta = [];
@@ -261,12 +261,12 @@ function buildScatter(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
           title: { display: true, text: xAxisTitle + '  (better \u2192)', color: INK_FAINT, font: { family: 'Helvetica Neue', size: 12 } },
           ticks: { color: INK_FAINT, font: { family: 'Helvetica Neue', size: 11 }, stepSize: 10,
             callback: v => (v === 0 || v === 52) ? '' : '#' + v },
-          grid: { color: GRID }, border: { color: '#d7dbdf' } },
+          grid: { color: GRID }, border: { color: '#c2c7cd' } },
         y: { reverse: true, min: 0, max: 52,
           title: { display: true, text: 'Quality of life rank  (better \u2191)', color: INK_FAINT, font: { family: 'Helvetica Neue', size: 12 } },
           ticks: { color: INK_FAINT, font: { family: 'Helvetica Neue', size: 11 }, stepSize: 10,
             callback: v => (v === 0 || v === 52) ? '' : '#' + v },
-          grid: { color: GRID }, border: { color: '#d7dbdf' } }
+          grid: { color: GRID }, border: { color: '#c2c7cd' } }
       }
     },
     plugins: [labelPlugin]
@@ -295,9 +295,9 @@ const HBAR_OPTS = (xMin, xMax) => ({
       title: { display: true, text: 'Spearman \u03c1', color: INK_FAINT, font: { family: 'Helvetica Neue', size: 12 } },
       ticks: { color: INK_FAINT, font: { family: 'Helvetica Neue', size: 11 },
         callback: v => (v > 0 ? '+' : v < 0 ? '\u2212' : '') + Math.abs(v).toFixed(1) },
-      grid: { color: ctx => ctx.tick.value === 0 ? '#b7bdc4' : GRID }, border: { color: '#d7dbdf' } },
+      grid: { color: ctx => ctx.tick.value === 0 ? '#b7bdc4' : GRID }, border: { color: '#c2c7cd' } },
     y: { ticks: { color: INK_SOFT, font: { family: 'Helvetica Neue', size: 12 } },
-      grid: { display: false }, border: { color: '#d7dbdf' } }
+      grid: { display: false }, border: { color: '#c2c7cd' } }
   }
 });
 
@@ -348,7 +348,7 @@ new Chart(document.getElementById('chartPairs'), {
     datasets: [{
       data: pairs.map(d => d.rho),
       meta: pairs,
-      backgroundColor: pairs.map(d => d.neg ? dark blue : BLUE),
+      backgroundColor: pairs.map(d => d.neg ? NEG : BLUE),
       borderRadius: 3, barThickness: 22
     }]
   },

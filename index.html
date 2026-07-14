@@ -7,6 +7,8 @@
 
 <!-- Social sharing / link unfurl tags. og:image must be an absolute URL;
      add preview.png (1200x630) to the repo for the image card to appear. -->
+
+     
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aperture Insights">
 <meta property="og:title" content="Is there a trade-off between business appeal and quality of life?">
@@ -25,7 +27,7 @@
     --ink-soft: #d9d9d9;
     --ink-faint: #8a929b;
     --paper: #090d1a;
-    --card: #e9ebee;
+    --card: #bdbdbd;
     --line: #d9d9d9;
     --blue: #01032d;
     --accent-neg: #d85a30;
@@ -81,13 +83,13 @@
   }
   .panel h2 {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px; font-weight: 600; margin: 0 0 2px; color: #1c2530;
+    font-size: 14px; font-weight: 600; margin: 0 0 2px; color: #ccc2f6;
   }
   .rho {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 12.5px; color: #5b6570; margin: 0 0 12px;
   }
-  .rho b { color: #1c2530; font-weight: 600; }
+  .rho b { color: #ccc2f6; font-weight: 600; }
   .chartbox { position: relative; width: 100%; height: 400px; }
   .chartbox.tall { height: 480px; }
   .note {
@@ -112,14 +114,14 @@
 
   <div class="grid">
     <div class="panel">
-      <h2>Quality of life vs overall business rank</h2>
+      <h2>Quality of Life v. Overall Business Rank</h2>
       <p class="rho">Spearman &rho; = <b>&minus;0.07</b> (p = 0.61) &mdash; no relationship</p>
       <div class="chartbox">
         <canvas id="chartOverall" role="img" aria-label="Scatter plot of quality of life rank versus overall business rank for all 50 states, showing no relationship"></canvas>
       </div>
     </div>
     <div class="panel">
-      <h2>Quality of life vs cost of doing business</h2>
+      <h2>Quality of life vs Cost of Doing Business</h2>
       <p class="rho">Spearman &rho; = <b>&minus;0.52</b> (p = 0.0001) &mdash; significant trade-off</p>
       <div class="chartbox">
         <canvas id="chartCodb" role="img" aria-label="Scatter plot of quality of life rank versus cost of doing business rank for all 50 states, showing a clear downward trade-off"></canvas>

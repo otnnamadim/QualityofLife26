@@ -5,22 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quality of life vs business appeal — CNBC Top States 2026 | Aperture Insights</title>
 
-<!-- Social sharing / link unfurl tags.
-     After deploying, update the og:url to your final URL and og:image to a
-     hosted screenshot (1200x630px works best — a capture of the right-hand
-     panel is a good choice). Relative image paths do NOT work for og:image;
-     it must be an absolute URL. -->
+<!-- Social sharing / link unfurl tags. og:image must be an absolute URL;
+     add preview.png (1200x630) to the repo for the image card to appear. -->
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aperture Insights">
 <meta property="og:title" content="Is there a trade-off between business appeal and quality of life?">
-<meta property="og:description" content="All 50 states from CNBC's 2026 Top States for Business study. The overall business ranking shows no relationship with quality of life (ρ = −0.07) — but cost of doing business does (ρ = −0.52). Interactive charts.">
-<meta property="og:url" content="https://otnnamadim.github.io/aperture-insights-visuals/">
-<meta property="og:image" content="https://otnnamadim.github.io/aperture-insights-visuals/preview.png">
+<meta property="og:description" content="All 50 states from CNBC's 2026 Top States for Business study. The overall ranking shows no relationship with quality of life (ρ = −0.07) — but cost of doing business does (ρ = −0.52). Plus: what actually drives the overall ranking.">
+<meta property="og:url" content="https://otnnamadim.github.io/QualityofLife26/">
+<meta property="og:image" content="https://otnnamadim.github.io/QualityofLife26/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Is there a trade-off between business appeal and quality of life?">
 <meta name="twitter:description" content="The Texas/Tennessee pattern is real — but it's a cost story, not a business-appeal story. Interactive analysis of CNBC's 2026 state rankings.">
-<meta name="twitter:image" content="https://otnnamadim.github.io/aperture-insights-visuals/preview.png">
-<meta name="description" content="Interactive analysis of CNBC's 2026 America's Top States for Business rankings: quality of life vs overall business rank and vs cost of doing business, across all 50 states.">
+<meta name="twitter:image" content="https://otnnamadim.github.io/QualityofLife26/preview.png">
+<meta name="description" content="Interactive analysis of CNBC's 2026 America's Top States for Business rankings: the quality-of-life trade-off, what drives the overall ranking, and the strongest category pairings across all 50 states.">
 
 <style>
   :root {
@@ -31,6 +28,7 @@
     --card: #ffffff;
     --line: #e3e6e9;
     --blue: #2a78d6;
+    --coral: #d85a30;
     --gray-dot: #9aa1a9;
   }
   * { box-sizing: border-box; }
@@ -53,18 +51,28 @@
     font-size: 13px; color: var(--ink-faint); margin: 0 0 18px;
   }
   .byline a { color: var(--ink-soft); }
-  .sub {
+  .sub, .body-text {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14px; color: var(--ink-soft); margin: 0 0 28px; max-width: 720px; line-height: 1.6;
+    font-size: 14px; color: var(--ink-soft); max-width: 780px; line-height: 1.65;
+  }
+  .sub { margin: 0 0 28px; }
+  .body-text { margin: 0 0 20px; }
+  .section-head {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17px; font-weight: 600; color: var(--ink);
+    margin: 44px 0 6px; padding-top: 28px; border-top: 1px solid var(--line);
   }
   .legend {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    display: flex; gap: 20px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 14px;
+    display: flex; flex-wrap: wrap; gap: 20px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 14px;
   }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .sw { width: 10px; height: 10px; display: inline-block; }
   .sw.named { background: var(--blue); border-radius: 2px; }
   .sw.other { background: var(--gray-dot); border-radius: 50%; }
+  .sw.sq-blue { background: var(--blue); border-radius: 2px; }
+  .sw.sq-gray { background: #c6cbd1; border-radius: 2px; }
+  .sw.sq-coral { background: var(--coral); border-radius: 2px; }
   .grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
   .panel {
@@ -81,6 +89,7 @@
   }
   .rho b { color: var(--ink); font-weight: 600; }
   .chartbox { position: relative; width: 100%; height: 400px; }
+  .chartbox.tall { height: 480px; }
   .note {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 12px; color: var(--ink-faint); margin-top: 26px; line-height: 1.7; max-width: 820px;
@@ -118,11 +127,57 @@
     </div>
   </div>
 
+  <h2 class="section-head">What actually tracks the overall ranking</h2>
+  <p class="body-text">Correlating the overall rank against each of the ten categories reveals a three-tier structure.
+  Access to capital, infrastructure, and technology &amp; innovation dominate (&rho; &gt; 0.75) &mdash; states that rank
+  well on these are the states that rank well overall. Because each category is a weighted input to the composite,
+  this describes how CNBC's methodology behaves, not what causes business success. The striking part is the bottom
+  of the list: quality of life and cost of living are statistically irrelevant to the crown, and even cost of doing
+  business only barely clears significance. States are not winning "Top State for Business" by being cheap.</p>
+
+  <div class="legend">
+    <span><span class="sw sq-blue"></span>Statistically significant (p &lt; 0.05)</span>
+    <span><span class="sw sq-gray"></span>Not significant</span>
+  </div>
+
+  <div class="panel">
+    <h2>Spearman correlation with overall business rank, by category</h2>
+    <p class="rho">Positive = better category rank goes with better overall rank &middot; n = 50 (49 where noted)</p>
+    <div class="chartbox tall">
+      <canvas id="chartDrivers" role="img" aria-label="Horizontal bar chart of Spearman correlations between the overall business rank and each of ten categories, from access to capital at plus 0.77 down to cost of living at minus 0.05"></canvas>
+    </div>
+  </div>
+
+  <h2 class="section-head">The strongest pairings in the full matrix</h2>
+  <p class="body-text">Across all 45 category pairings, six correlate more strongly than the quality-of-life trade-off &mdash;
+  but every one of them is positive. They form a single "capability cluster": states with deep capital markets have large
+  tech sectors (&rho; = +0.91 &mdash; so collinear the two categories arguably double-count one attribute), which co-travel
+  with infrastructure and economic strength. Likewise, cheap-to-operate states are cheap-to-live states (+0.60): one
+  underlying cheapness factor, expressed twice. The quality-of-life &times; cost-of-doing-business pairing remains the
+  strongest <em>negative</em> relationship in the entire matrix &mdash; the only place the data says being good at one
+  thing predicts being bad at another.</p>
+
+  <div class="legend">
+    <span><span class="sw sq-blue"></span>Positive pairing (categories move together)</span>
+    <span><span class="sw sq-coral"></span>Negative pairing (trade-off)</span>
+  </div>
+
+  <div class="panel">
+    <h2>Top 10 category pairings by correlation strength</h2>
+    <p class="rho">All shown pairings are statistically significant (p &lt; 0.01)</p>
+    <div class="chartbox tall">
+      <canvas id="chartPairs" role="img" aria-label="Horizontal bar chart of the ten strongest category pairings, led by tech and innovation with access to capital at plus 0.91; quality of life with cost of doing business at minus 0.52 is the only negative pairing"></canvas>
+    </div>
+  </div>
+
   <p class="note">Ranks from CNBC's 2026 America's Top States for Business study (1 = best of 50). Spearman rank correlation
-  used because ranks are ordinal. Note that quality of life is itself a weighted component of the overall composite,
-  which makes the near-zero left panel more striking, not less. Michigan and Minnesota are the notable trade-off
-  breakers on the right panel; Tennessee's Access to Capital, Education, and Cost of Living ranks were unavailable
-  in the source table but are not used in either chart.</p>
+  used because ranks are ordinal; positive &rho; means better rank on one measure accompanies better rank on the other.
+  Quality of life is itself a weighted component of the overall composite, which makes its near-zero correlation with the
+  overall rank more striking, not less. Michigan and Minnesota are the notable trade-off breakers in the scatter panels.
+  Tennessee's Access to Capital, Education, and Cost of Living ranks were unavailable in the source table, so pairings
+  involving those categories run on n = 49. With 45 simultaneous pairings tested at &alpha; = 0.05, roughly two false
+  positives are expected by chance; the headline pairings shown here all survive standard multiple-comparison corrections.
+  Correlations describe association within CNBC's scoring framework, not causation.</p>
 </div>
 
 <!-- Chart.js from CDN — do not replace with a local path.
@@ -157,9 +212,10 @@ const labelsCodb = {
   "Oklahoma": [8,0], "New Jersey": [8,5]
 };
 
-const INK_SOFT = '#5b6570', INK_FAINT = '#8a929b', GRID = '#eceef0';
+const INK = '#1c2530', INK_SOFT = '#5b6570', INK_FAINT = '#8a929b', GRID = '#eceef0';
+const BLUE = '#2a78d6', CORAL = '#d85a30', GRAY_BAR = '#c6cbd1';
 
-function buildChart(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
+function buildScatter(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
   const namedPts = [], otherPts = [], namedMeta = [];
   states.forEach(s => {
     const pt = { x: s[xIdx], y: s[3], name: s[0] };
@@ -184,8 +240,8 @@ function buildChart(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
   new Chart(document.getElementById(canvasId), {
     type: 'scatter',
     data: { datasets: [
-      { data: otherPts, backgroundColor: '#9aa1a9', pointRadius: 4, pointHoverRadius: 6, pointStyle: 'circle' },
-      { data: namedPts, backgroundColor: '#2a78d6', pointRadius: 6, pointHoverRadius: 8,
+      { data: otherPts, backgroundColor: GRAY_BAR, pointRadius: 4, pointHoverRadius: 6, pointStyle: 'circle' },
+      { data: namedPts, backgroundColor: BLUE, pointRadius: 6, pointHoverRadius: 8,
         pointStyle: 'rectRounded', borderColor: '#ffffff', borderWidth: 1.5 }
     ]},
     options: {
@@ -193,7 +249,7 @@ function buildChart(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: '#1c2530', titleFont: { family: 'Helvetica Neue' }, bodyFont: { family: 'Helvetica Neue' },
+          backgroundColor: INK, titleFont: { family: 'Helvetica Neue' }, bodyFont: { family: 'Helvetica Neue' },
           callbacks: {
             title: (items) => items[0].raw.name,
             label: (c) => [xShort + ' rank: #' + c.parsed.x, 'Quality of life rank: #' + c.parsed.y]
@@ -217,8 +273,87 @@ function buildChart(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
   });
 }
 
-buildChart('chartOverall', 1, 'Overall business', 'Overall business rank', labelsOverall);
-buildChart('chartCodb', 2, 'Cost of doing business', 'Cost of doing business rank', labelsCodb);
+buildScatter('chartOverall', 1, 'Overall business', 'Overall business rank', labelsOverall);
+buildScatter('chartCodb', 2, 'Cost of doing business', 'Cost of doing business rank', labelsCodb);
+
+const HBAR_OPTS = (xMin, xMax) => ({
+  indexAxis: 'y',
+  responsive: true, maintainAspectRatio: false,
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      backgroundColor: INK, titleFont: { family: 'Helvetica Neue' }, bodyFont: { family: 'Helvetica Neue' },
+      callbacks: { label: (c) => {
+        const m = c.dataset.meta[c.dataIndex];
+        return ['\u03c1 = ' + (c.parsed.x >= 0 ? '+' : '\u2212') + Math.abs(c.parsed.x).toFixed(2),
+                'p ' + m.p, m.n];
+      }}
+    }
+  },
+  scales: {
+    x: { min: xMin, max: xMax,
+      title: { display: true, text: 'Spearman \u03c1', color: INK_FAINT, font: { family: 'Helvetica Neue', size: 12 } },
+      ticks: { color: INK_FAINT, font: { family: 'Helvetica Neue', size: 11 },
+        callback: v => (v > 0 ? '+' : v < 0 ? '\u2212' : '') + Math.abs(v).toFixed(1) },
+      grid: { color: ctx => ctx.tick.value === 0 ? '#b7bdc4' : GRID }, border: { color: '#d7dbdf' } },
+    y: { ticks: { color: INK_SOFT, font: { family: 'Helvetica Neue', size: 12 } },
+      grid: { display: false }, border: { color: '#d7dbdf' } }
+  }
+});
+
+const drivers = [
+  { label: 'Access to capital',        rho: 0.774, sig: true,  p: '< 0.0001', n: 'n = 49' },
+  { label: 'Infrastructure',           rho: 0.770, sig: true,  p: '< 0.0001', n: 'n = 50' },
+  { label: 'Technology & innovation',  rho: 0.758, sig: true,  p: '< 0.0001', n: 'n = 50' },
+  { label: 'Economy',                  rho: 0.686, sig: true,  p: '< 0.0001', n: 'n = 50' },
+  { label: 'Workforce',                rho: 0.543, sig: true,  p: '< 0.0001', n: 'n = 50' },
+  { label: 'Education',                rho: 0.312, sig: true,  p: '= 0.029',  n: 'n = 49' },
+  { label: 'Cost of doing business',   rho: 0.286, sig: true,  p: '= 0.044',  n: 'n = 50' },
+  { label: 'Business friendliness',    rho: 0.238, sig: false, p: '= 0.096',  n: 'n = 50' },
+  { label: 'Quality of life',          rho: -0.073, sig: false, p: '= 0.61',  n: 'n = 50' },
+  { label: 'Cost of living',           rho: -0.052, sig: false, p: '= 0.72',  n: 'n = 49' }
+];
+
+new Chart(document.getElementById('chartDrivers'), {
+  type: 'bar',
+  data: {
+    labels: drivers.map(d => d.label),
+    datasets: [{
+      data: drivers.map(d => d.rho),
+      meta: drivers,
+      backgroundColor: drivers.map(d => d.sig ? BLUE : GRAY_BAR),
+      borderRadius: 3, barThickness: 22
+    }]
+  },
+  options: HBAR_OPTS(-0.2, 0.9)
+});
+
+const pairs = [
+  { label: 'Tech & innovation \u00d7 Access to capital', rho: 0.912, neg: false, p: '< 0.0001', n: 'n = 49' },
+  { label: 'Infrastructure \u00d7 Tech & innovation',    rho: 0.701, neg: false, p: '< 0.0001', n: 'n = 50' },
+  { label: 'Infrastructure \u00d7 Access to capital',    rho: 0.699, neg: false, p: '< 0.0001', n: 'n = 49' },
+  { label: 'Economy \u00d7 Access to capital',           rho: 0.621, neg: false, p: '< 0.0001', n: 'n = 49' },
+  { label: 'Cost of doing business \u00d7 Cost of living', rho: 0.599, neg: false, p: '< 0.0001', n: 'n = 49' },
+  { label: 'Economy \u00d7 Tech & innovation',           rho: 0.547, neg: false, p: '< 0.0001', n: 'n = 50' },
+  { label: 'Quality of life \u00d7 Cost of doing business', rho: -0.525, neg: true, p: '= 0.0001', n: 'n = 50' },
+  { label: 'Economy \u00d7 Workforce',                   rho: 0.519, neg: false, p: '= 0.0001', n: 'n = 50' },
+  { label: 'Business friendliness \u00d7 Cost of living', rho: 0.460, neg: false, p: '= 0.0009', n: 'n = 49' },
+  { label: 'Quality of life \u00d7 Education',           rho: 0.445, neg: false, p: '= 0.0013', n: 'n = 49' }
+];
+
+new Chart(document.getElementById('chartPairs'), {
+  type: 'bar',
+  data: {
+    labels: pairs.map(d => d.label),
+    datasets: [{
+      data: pairs.map(d => d.rho),
+      meta: pairs,
+      backgroundColor: pairs.map(d => d.neg ? CORAL : BLUE),
+      borderRadius: 3, barThickness: 22
+    }]
+  },
+  options: HBAR_OPTS(-0.7, 1.0)
+});
 </script>
 </body>
 </html>

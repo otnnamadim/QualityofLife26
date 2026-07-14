@@ -214,8 +214,15 @@ const labelsCodb = {
   "Oklahoma": [8,0], "New Jersey": [8,5]
 };
 
+// Pull all colors from the CSS custom properties in :root, so the legend
+// swatches (styled via var(--x) in CSS) and the Chart.js fills read from a
+// single source and can't drift apart when the palette is edited.
+const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const INK = '#1c2530', INK_SOFT = '#5b6570', INK_FAINT = '#8a929b', GRID = '#d8dce0';
-const BLUE = '#01032d', NEG = '#ccc2fr', GRAY_BAR = '#c6cbd1';
+const BLUE = cssVar('--blue'), NEG = cssVar('--accent-neg');
+// Two distinct muted grays, matching two distinct legend swatches:
+const OTHER_DOT = cssVar('--chart-dot'); // scatter "All other states" — matches .sw.other
+const GRAY_BAR = '#c6cbd1';              // bar chart "Not significant" — matches .sw.sq-gray
 
 function buildScatter(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
   const namedPts = [], otherPts = [], namedMeta = [];
@@ -242,7 +249,7 @@ function buildScatter(canvasId, xIdx, xShort, xAxisTitle, labelMap) {
   new Chart(document.getElementById(canvasId), {
     type: 'scatter',
     data: { datasets: [
-      { data: otherPts, backgroundColor: GRAY_BAR, pointRadius: 4, pointHoverRadius: 6, pointStyle: 'circle' },
+      { data: otherPts, backgroundColor: OTHER_DOT, pointRadius: 4, pointHoverRadius: 6, pointStyle: 'circle' },
       { data: namedPts, backgroundColor: BLUE, pointRadius: 6, pointHoverRadius: 8,
         pointStyle: 'rectRounded', borderColor: '#ffffff', borderWidth: 1.5 }
     ]},

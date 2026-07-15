@@ -1,9 +1,13 @@
+HTML 
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quality of life vs business appeal — CNBC Top States 2026 | Aperture Insights</title>
+<title>Data Exploration: CNBC Top States 2026 | Aperture Insights</title>
 
 <!-- Social sharing / link unfurl tags. og:image must be an absolute URL;
      add preview.png (1200x630) to the repo for the image card to appear. -->
@@ -12,26 +16,38 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Aperture Insights">
 <meta property="og:title" content="Is there a trade-off between business appeal and quality of life?">
-<meta property="og:description" content="All 50 states from CNBC's 2026 Top States for Business study. The overall ranking shows no relationship with quality of life (ρ = −0.07) — but cost of doing business does (ρ = −0.52). Plus: what actually drives the overall ranking.">
+<meta property="og:description" content="Analysis of CNBC's 2026 Top States for Business study. The overall ranking show a correlation between the cost of doing business and overall ranking.">
 <meta property="og:url" content="https://otnnamadim.github.io/QualityofLife26/">
 <meta property="og:image" content="https://otnnamadim.github.io/QualityofLife26/preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Is there a trade-off between business appeal and quality of life?">
-<meta name="twitter:description" content="The Texas/Tennessee pattern is real — but it's a cost story, not a business-appeal story. Interactive analysis of CNBC's 2026 state rankings.">
+<meta name="twitter:description" content="Analysis of CNBC's 2026 Top States for Business study. The overall ranking show a correlation between the cost of doing business and overall ranking.">
 <meta name="twitter:image" content="https://otnnamadim.github.io/QualityofLife26/preview.png">
 <meta name="description" content="Interactive analysis of CNBC's 2026 America's Top States for Business rankings: the quality-of-life trade-off, what drives the overall ranking, and the strongest category pairings across all 50 states.">
 
 <style>
+     
   :root {
     --ink: #ccc2f6;
+￼
     --ink-soft: #d9d9d9;
+￼
     --ink-faint: #8a929b;
+￼
     --paper: #090d1a;
+￼
     --card: #bdbdbd;
+￼
     --line: #d9d9d9;
+￼
     --blue: #01032d;
+￼
     --accent-neg: #d85a30;
+￼
     --chart-dot: #ccc2f6;
+￼
+    --gray-muted: #c6cbd1;
+￼
   }
   * { box-sizing: border-box; }
   body {
@@ -45,12 +61,12 @@
   .eyebrow {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink-faint); margin: 0 0 8px;
+    color: var(--ink-soft); margin: 0 0 8px;
   }
   h1 { font-size: 27px; font-weight: 400; margin: 0 0 6px; line-height: 1.3; }
   .byline {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 13px; color: var(--ink-faint); margin: 0 0 18px;
+    font-size: 13px; color: var(--ink-soft); margin: 0 0 18px;
   }
   .byline a { color: var(--ink-soft); }
   .sub, .body-text {
@@ -70,11 +86,11 @@
   }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .sw { width: 10px; height: 10px; display: inline-block; }
-  .sw.named { background: var(--blue); border-radius: 2px; }
-  .sw.other { background: var(--chart-dot); border-radius: 50%; }
-  .sw.sq-blue { background: var(--blue); border-radius: 2px; }
-  .sw.sq-gray { background: #c6cbd1; border-radius: 2px; }
-  .sw.sq-neg { background: var(--accent-neg); border-radius: 2px; }
+  .sw.named { background: var(--blue); border-radius: 2px; } /* LabeledStates */
+  .sw.other { background: var(--chart-dot); border-radius: 50%; } /* NonLabeledStates */
+  .sw.sq-blue { background: var(--blue); border-radius: 2px; } /* StatisticallySignificantPositive */
+  .sw.sq-gray { background: #c6cbd1; border-radius: 2px; } /* StatisticallyInsignificantPositive */
+  .sw.sq-neg { background: var(--accent-neg); border-radius: 2px; } /* Negative */
   .grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
   .panel {
@@ -97,6 +113,8 @@
     font-size: 12px; color: var(--ink-faint); margin-top: 26px; line-height: 1.7; max-width: 820px;
   }
 </style>
+
+
 </head>
 <body>
 <div class="wrap">
